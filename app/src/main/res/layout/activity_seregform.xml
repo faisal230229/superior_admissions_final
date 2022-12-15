@@ -247,6 +247,24 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Result Card(only pdf):"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/file_icon"
+                android:padding="15dp"
+                android:id="@+id/pdfBtn"
+                android:layout_marginLeft="130dp"
+                android:background="@drawable/round_circle"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

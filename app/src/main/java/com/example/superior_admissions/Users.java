@@ -1,9 +1,9 @@
 package com.example.superior_admissions;
 
 public class Users {
-    String Name,fname, email, mobile, cic,fcic,matric2,inter2,selectDegree, pas, program, college, regis, fee, discount;
+    String Name,fname, email, mobile, cic,fcic,matric2,inter2,selectDegree, pas, program, college, regis, fee, discount, pdfUrl;
 
-    public Users(String name, String fname, String email, String mobile, String cic, String fcic, String matric2, String inter2, String selectDegree, String pas, String program, String college, String regis, String fee, String discount) {
+    public Users(String name, String fname, String email, String mobile, String cic, String fcic, String matric2, String inter2, String selectDegree, String pas, String program, String college, String regis, String fee, String discount, String pdfUrl) {
         Name = name;
         this.fname = fname;
         this.email = email;
@@ -19,6 +19,7 @@ public class Users {
         this.regis = regis;
         this.fee = fee;
         this.discount = discount;
+        this.pdfUrl = pdfUrl;
     }
 
     public String getName() {
@@ -135,5 +136,11 @@ public class Users {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public  String  getPdfUrl(){ return pdfUrl; }
+
+    public void setPdfUrl(String pdfUrl) {
+        this.pdfUrl = pdfUrl;
     }
 }

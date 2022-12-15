@@ -1,25 +1,40 @@
 package com.example.superior_admissions;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.superior_admissions.databinding.ActivityGandmregformBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Gandmregform extends AppCompatActivity {
 
     ActivityGandmregformBinding binding;
     String Name,Fname, email, Mobile_num,cnic1,fcnic,mat,inte,d1,d2, pass, register;
+    ImageView pdfBtn;
+    Uri imgUrl;
 
     long subfee = 139400;
     long collfee =1;
@@ -32,6 +47,7 @@ public class Gandmregform extends AppCompatActivity {
     String cldisc, markdisc, disc;
 
     FirebaseDatabase db;
+    StorageReference storageReference;
     DatabaseReference reference;
     RadioGroup radioClass, programclass, college;
 
@@ -42,7 +58,7 @@ public class Gandmregform extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seregform);
+        setContentView(R.layout.activity_gandmregform);
 
         binding = ActivityGandmregformBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -63,6 +79,16 @@ public class Gandmregform extends AppCompatActivity {
         matmarks = findViewById(R.id.matric1);
         intmarks = findViewById(R.id.inter1);
         regist = findViewById (R.id.registeration);
+        pdfBtn = findViewById(R.id.pdfBtn);
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        pdfBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectPdfFile();
+            }
+        });
+
 
         binding.registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +158,7 @@ public class Gandmregform extends AppCompatActivity {
 
                 fee = semfee + adfee + mischarge;
 
-                Users user = new Users(Name,Fname,email,Mobile_num,cnic1,fcnic,mat,inte,selectedBtn.getText ().toString (),pass,selectedprog.getText().toString(),selectclg.getText().toString(),register, String.valueOf((int) fee),disc);
+                Users user = new Users(Name,Fname,email,Mobile_num,cnic1,fcnic,mat,inte,selectedBtn.getText ().toString (),pass,selectedprog.getText().toString(),selectclg.getText().toString(),register, String.valueOf((int) fee),disc, imgUrl.toString());
 
                 if (binding.userName.getText().toString().isEmpty()){
                     binding.userName.setError("Name cannot be empty!");
@@ -203,9 +229,54 @@ public class Gandmregform extends AppCompatActivity {
 
             }
 
-
-
-
         });
+    }
+
+    private void selectPdfFile() {
+        Intent i = new Intent();
+        i.setType("application/pdf");
+        i.setAction(i.ACTION_GET_CONTENT);
+        startActivityForResult(i.createChooser(i, "Select PDF File"), 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
+            uploadPDFFile(data.getData());
+        }
+    }
+
+    private void uploadPDFFile(Uri data) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
+
+        StorageReference reference = storageReference.child("uploads/"+ System.currentTimeMillis()+".pdf");
+        reference.putFile(data)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
+                        while(!uri.isComplete());
+                        imgUrl = uri.getResult();
+
+                        pdfBtn.setImageResource(R.drawable.tick);
+
+                        Toast.makeText(Gandmregform.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        double progress = (100 * snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+
+                        progressDialog.setMessage("Uploaded: "+ (int)progress+ "%");
+                    }
+                });
     }
 }
