@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg2"
+    tools:context=".Fee_challan">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/sllayout">
+
+    <ImageView
+        android:id="@+id/challan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:src="@drawable/challan_form" />
+
+    <TextView
+        android:id="@+id/disc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="362dp"
+        android:layout_marginEnd="299dp"
+        android:layout_marginBottom="358dp"
+        android:text="BCSM-F20-262"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="361dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="359dp"
+        android:hint="Sammar Aleem"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:id="@+id/degree"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="183dp"
+        android:layout_marginTop="377dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginBottom="343dp"
+        android:hint="BS Computer Science"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="341dp"
+        android:layout_marginTop="361dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginBottom="359dp"
+        android:text="F22"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:layout_width="43dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="339dp"
+        android:layout_marginTop="377dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="343dp"
+        android:text="26-01-2023"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:id="@+id/fname"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="377dp"
+        android:layout_marginEnd="258dp"
+        android:layout_marginBottom="343dp"
+        android:hint="Aleem Ahmed"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="393dp"
+        android:layout_marginEnd="299dp"
+        android:layout_marginBottom="327dp"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+    <TextView
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="344dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="376dp"
+        android:text="990574"
+        android:textColor="#212121"
+        android:textSize="8dp" />
+
+   </RelativeLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Invoice"
+        android:backgroundTint="#6b1f61"
+        android:layout_centerHorizontal="true"
+        app:strokeColor="@color/white"
+        android:layout_marginTop="500dp"
+        android:elevation="30dp"
+        app:strokeWidth="1dp"
+        app:cornerRadius="10dp"/>
+
+
+</RelativeLayout>
