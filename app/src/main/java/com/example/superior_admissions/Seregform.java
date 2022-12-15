@@ -138,7 +138,7 @@ public class Seregform extends AppCompatActivity {
                 System.out.println(fee);
 
 
-                Users user = new Users(Name,Fname,email,Mobile_num,cnic1,fcnic,mat,inte,selectedBtn.getText ().toString (), pass,selectedprog.getText().toString(),selectclg.getText().toString(),register , String.valueOf(fee),disc);
+                Users user = new Users(Name,Fname,email,Mobile_num,cnic1,fcnic,mat,inte,selectedBtn.getText ().toString (), pass,selectedprog.getText().toString(),selectclg.getText().toString(),register , String.valueOf((int) fee),disc);
 
                 if (binding.userName.getText().toString().isEmpty()){
                     binding.userName.setError("Name cannot be empty!");

@@ -132,15 +132,15 @@ public class Csregfrom extends AppCompatActivity {
                     disc = cldisc;
                 }
 
-                System.out.println(semfee);
-                System.out.println(adfee);
-                System.out.println(mischarge);
+//                System.out.println(semfee);
+//                System.out.println(adfee);
+//                System.out.println(mischarge);
 
                 fee = semfee + adfee + mischarge;
 
-                System.out.println(fee);
+//                System.out.println((int) fee);
 
-                Users user = new Users(Name, Fname,email,Mobile_num,cnic1,fcnic,mat,inte, selectedBtn.getText ().toString (), pass, selectedprog.getText().toString(),selectclg.getText().toString(),register, String.valueOf(fee),disc);
+                Users user = new Users(Name, Fname,email,Mobile_num,cnic1,fcnic,mat,inte, selectedBtn.getText ().toString (), pass, selectedprog.getText().toString(),selectclg.getText().toString(),register, String.valueOf((int) fee),disc);
 
                 if (binding.userName.getText().toString().isEmpty()){
                     binding.userName.setError("Name cannot be empty!");
